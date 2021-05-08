@@ -1,13 +1,28 @@
-import React, { useState, useEffecte } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import SingleUserPage from './components/SingleUserPage';
 import UsersPage from './components/UsersPage';
 import CoursesPage from './components/CoursesPage';
 import SingleCoursePage from './components/SingleCoursePage';
-import AdminPanel from './components/AdminPanel';
+import AdminPanel from './components/admin-components/AdminPanel';
+import { getAllUsers } from './reducers/userReducer';
 
 function App() {
+	const dispatch = useDispatch();
+
+	useEffect(
+		() => {
+			console.log('dispatching getAllUsers...');
+			dispatch(getAllUsers());
+		},
+		[ dispatch ]
+	);
+
+	const users = useSelector(state => state.users);
+
+	console.log(`users`, users);
+
 	return (
 		<div className='App'>
 			<h1>Carna</h1>
