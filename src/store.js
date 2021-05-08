@@ -6,9 +6,11 @@ import {
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import userReducer from './reducers/userReducer';
+import courseReducer from './reducers/courseReducer';
 
 const reducer = combineReducers({
-	users : userReducer
+	users   : userReducer,
+	courses : courseReducer
 });
 
 const store = createStore(

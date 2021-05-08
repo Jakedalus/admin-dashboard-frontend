@@ -7,6 +7,7 @@ import CoursesPage from './components/CoursesPage';
 import SingleCoursePage from './components/SingleCoursePage';
 import AdminPanel from './components/admin-components/AdminPanel';
 import { getAllUsers } from './reducers/userReducer';
+import { getAllCourses } from './reducers/courseReducer';
 
 function App() {
 	const dispatch = useDispatch();
@@ -15,13 +16,16 @@ function App() {
 		() => {
 			console.log('dispatching getAllUsers...');
 			dispatch(getAllUsers());
+			dispatch(getAllCourses());
 		},
 		[ dispatch ]
 	);
 
 	const users = useSelector(state => state.users);
+	const courses = useSelector(state => state.courses);
 
 	console.log(`users`, users);
+	console.log(`courses`, courses);
 
 	return (
 		<div className='App'>
