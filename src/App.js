@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import SingleUserPage from './components/SingleUserPage';
 import UsersPage from './components/UsersPage';
-import CoursesPage from './components/CoursesPage';
-import SingleCoursePage from './components/SingleCoursePage';
+import CoursesPage from './components/course-components/CoursesPage';
+import SingleCoursePage from './components/course-components/SingleCoursePage';
 import AdminPanel from './components/admin-components/AdminPanel';
 import { getAllUsers } from './reducers/userReducer';
 import { getAllCourses } from './reducers/courseReducer';
@@ -43,7 +43,7 @@ function App() {
 						<SingleCoursePage />
 					</Route>
 					<Route path='/courses'>
-						<CoursesPage />
+						<CoursesPage courses={courses} />
 					</Route>
 					<Route path='/'>
 						<AdminPanel />
