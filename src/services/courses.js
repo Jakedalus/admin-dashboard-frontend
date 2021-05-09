@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios';
 
 const baseUrl = '/api/courses';
@@ -8,6 +9,38 @@ const getAllCourses = async () => {
 	return response.data;
 };
 
+const createNewCourse = async (course, config) => {
+	const response = await axios.post(
+		baseUrl,
+		course,
+		config
+	);
+
+	return response.data;
+};
+
+const updateCourse = async (id, updates, config) => {
+	const response = await axios.put(
+		`${baseUrl}/${id}`,
+		updates,
+		config
+	);
+
+	return response.data;
+};
+
+const deleteCourse = async (id, config) => {
+	const response = await axios.delete(
+		`${baseUrl}/${id}`,
+		config
+	);
+
+	return response.data;
+};
+
 export default {
-	getAllCourses
+	getAllCourses,
+	createNewCourse,
+	updateCourse,
+	deleteCourse
 };
