@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-import SingleUserPage from './components/SingleUserPage';
-import UsersPage from './components/UsersPage';
+import SingleUserPage from './components/user-components/SingleUserPage';
+import UsersPage from './components/user-components/UsersPage';
 import CoursesPage from './components/course-components/CoursesPage';
 import SingleCoursePage from './components/course-components/SingleCoursePage';
 import AdminPanel from './components/admin-components/AdminPanel';
