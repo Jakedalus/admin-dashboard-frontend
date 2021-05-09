@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
+import jwt from 'jsonwebtoken';
 import SingleUserPage from './components/user-components/SingleUserPage';
 import UsersPage from './components/user-components/UsersPage';
 import CoursesPage from './components/course-components/CoursesPage';
@@ -8,6 +9,7 @@ import SingleCoursePage from './components/course-components/SingleCoursePage';
 import AdminPanel from './components/admin-components/AdminPanel';
 import { getAllUsers } from './reducers/userReducer';
 import { getAllCourses } from './reducers/courseReducer';
+import { signin } from './reducers/authReducer';
 import SignInPage from './components/SignInPage';
 
 function App() {
@@ -31,6 +33,14 @@ function App() {
 		console.log(`signedInUserJSON`, signedInUserJSON);
 
 		if (signedInUserJSON) {
+			const user = JSON.parse(signedInUserJSON);
+
+			const decodedToken = jwt.verify(
+				user.token,
+				process.env.REACT_APP_SECRET
+			);
+
+			dispatch(signin({ ...user, id: decodedToken }));
 		}
 	}, []);
 

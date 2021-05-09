@@ -32,8 +32,6 @@ export const signinUser = credentials => {
 				JSON.stringify(user)
 			);
 
-			console.log(`process.env`, process.env);
-
 			const decodedToken = jwt.verify(
 				user.token,
 				process.env.REACT_APP_SECRET
