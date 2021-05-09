@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { signin } from '../reducers/authReducer';
+import { signinUser } from '../reducers/authReducer';
 
 const SignInPage = () => {
 	const [ username, setUsername ] = useState('');
@@ -11,7 +11,10 @@ const SignInPage = () => {
 	const handleSignin = e => {
 		e.preventDefault();
 
-		dispatch(signin(username, password));
+		console.log(`username`, username);
+		console.log(`password`, password);
+
+		dispatch(signinUser({ username, password }));
 	};
 
 	return (

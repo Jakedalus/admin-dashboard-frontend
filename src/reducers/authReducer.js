@@ -17,18 +17,26 @@ export const signout = () => {
 };
 
 export const signinUser = credentials => {
+	console.log('signinUser, credentials', credentials);
 	return async dispatch => {
+		console.log('signinUser, dispatch');
 		try {
-			const user = await authService.sigin(credentials);
+			console.log('signinUser, try block');
+
+			const user = await authService.signin(credentials);
+
+			console.log(`user`, user);
 
 			window.localStorage.setItem(
 				'signedInUser',
 				JSON.stringify(user)
 			);
 
+			console.log(`process.env`, process.env);
+
 			const decodedToken = jwt.verify(
 				user.token,
-				process.env.SECRET
+				process.env.REACT_APP_SECRET
 			);
 
 			dispatch(signin({ ...user, id: decodedToken.id }));

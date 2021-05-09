@@ -22,6 +22,18 @@ function App() {
 		[ dispatch ]
 	);
 
+	useEffect(() => {
+		const signedInUserJSON = window.localStorage.getItem(
+			'signedInUser'
+		);
+
+		console.log(`window.localStorage`, window.localStorage);
+		console.log(`signedInUserJSON`, signedInUserJSON);
+
+		if (signedInUserJSON) {
+		}
+	}, []);
+
 	const admin = useSelector(state => state.admin);
 	const users = useSelector(state => state.users);
 	const courses = useSelector(state => state.courses);
@@ -36,7 +48,7 @@ function App() {
 			{!admin && <SignInPage />}
 			{admin && (
 				<div>
-					<h2>Welcome, {admin}</h2>
+					<h2>Welcome, {admin.username}</h2>
 					<Switch>
 						<Route path='/users/:id'>
 							<SingleUserPage />
