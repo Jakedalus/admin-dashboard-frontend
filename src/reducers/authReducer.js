@@ -11,6 +11,8 @@ export const signin = user => {
 };
 
 export const signout = () => {
+	window.localStorage.clear();
+
 	return dispatch => {
 		dispatch({ type: 'SIGNOUT' });
 	};

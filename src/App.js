@@ -9,7 +9,7 @@ import SingleCoursePage from './components/course-components/SingleCoursePage';
 import AdminPanel from './components/admin-components/AdminPanel';
 import { getAllUsers } from './reducers/userReducer';
 import { getAllCourses } from './reducers/courseReducer';
-import { signin } from './reducers/authReducer';
+import { signin, signout } from './reducers/authReducer';
 import SignInPage from './components/SignInPage';
 
 function App() {
@@ -59,6 +59,9 @@ function App() {
 			{admin && (
 				<div>
 					<h2>Welcome, {admin.username}</h2>
+					<button onClick={() => dispatch(signout())}>
+						Sign Out
+					</button>
 					<Switch>
 						<Route path='/users/:id'>
 							<SingleUserPage />
