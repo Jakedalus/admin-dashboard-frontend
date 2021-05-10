@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { deleteCourse } from '../../reducers/courseReducer';
 import CourseForm from './CourseForm';
 
@@ -25,6 +26,9 @@ const SingleCoursePage = ({ course, admin }) => {
 
 	return (
 		<li>
+			<Link to='/courses'>
+				<button>{'<'} Back</button>
+			</Link>
 			{!editMode && (
 				<div>
 					<h3>{course.title}</h3>
