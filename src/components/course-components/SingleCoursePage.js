@@ -34,6 +34,8 @@ const SingleCoursePage = ({ course, admin }) => {
 					<h3>{course.title}</h3>
 					<p>{course.teacher}</p>
 					<p>{course.subject}</p>
+					<p>{course.createdAt}</p>
+					<p>{course.updatedAt}</p>
 					<ul>
 						{course.questions.map(q => (
 							<li key={q._id}>
