@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { deleteCourse } from '../../reducers/courseReducer';
 import CourseForm from './CourseForm';
 
@@ -27,7 +28,9 @@ const Course = ({ course, admin }) => {
 		<li>
 			{!editMode && (
 				<div>
-					<h3>{course.title}</h3>
+					<Link to={`/courses/${course.id}`}>
+						<h3>{course.title}</h3>
+					</Link>
 					<p>{course.teacher}</p>
 					<p>{course.subject}</p>
 					<ul>

@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import {
+	Switch,
+	Route,
+	useRouteMatch
+} from 'react-router-dom';
 import jwt from 'jsonwebtoken';
 import SingleUserPage from './components/user-components/SingleUserPage';
 import UsersPage from './components/user-components/UsersPage';
@@ -61,6 +65,20 @@ function App() {
 	console.log(`users`, users);
 	console.log(`courses`, courses);
 
+	const userMatch = useRouteMatch('/users/:id');
+	const userPage = userMatch
+		? users.find(user => user.id === userMatch.params.id)
+		: null;
+
+	const courseMatch = useRouteMatch('/courses/:id');
+	const coursePage = courseMatch
+		? courses.find(
+				course => course.id === courseMatch.params.id
+			)
+		: null;
+
+	console.log(`coursePage`, coursePage);
+
 	return (
 		<div className='App'>
 			<h1>Carna</h1>
@@ -81,7 +99,10 @@ function App() {
 							<UsersPage />
 						</Route>
 						<Route path='/courses/:id'>
-							<SingleCoursePage />
+							<SingleCoursePage
+								course={coursePage}
+								admin={admin}
+							/>
 						</Route>
 						<Route path='/courses'>
 							<CoursesPage
