@@ -46,6 +46,30 @@ export const signinUser = credentials => {
 	};
 };
 
+export const signupUser = credentials => {
+	return async dispatch => {
+		try {
+			const user = await authService.signup(credentials);
+
+			console.log(`user`, user);
+
+			window.localStorage.setItem(
+				'signedInUser',
+				JSON.stringify(user)
+			);
+
+			const decodedToken = jwt.verify(
+				user.token,
+				process.env.REACT_APP_SECRET
+			);
+
+			dispatch(signin({ ...user, id: decodedToken.id }));
+		} catch (exception) {
+			console.log(`exception`, exception);
+		}
+	};
+};
+
 const reducer = (state = null, action) => {
 	console.log('state now: ', state);
 	console.log('action', action);

@@ -78,7 +78,7 @@ function App() {
 			)
 		: null;
 
-	console.log(`coursePage`, coursePage);
+	// console.log(`coursePage`, coursePage);
 
 	return (
 		<div className='App'>

@@ -16,4 +16,17 @@ const signin = async credentials => {
 	return response.data;
 };
 
-export default { signin };
+const signup = async credentials => {
+	console.log('signup, credentials', credentials);
+
+	const response = await axios.post(
+		`${baseUrl}/signup`,
+		credentials
+	);
+
+	console.log(`response.data`, response.data);
+
+	return response.data;
+};
+
+export default { signin, signup };
