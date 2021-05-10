@@ -11,6 +11,7 @@ import UsersPage from './components/user-components/UsersPage';
 import CoursesPage from './components/course-components/CoursesPage';
 import SingleCoursePage from './components/course-components/SingleCoursePage';
 import AdminPanel from './components/admin-components/AdminPanel';
+import Header from './components/Header';
 import { getAllUsers } from './reducers/userReducer';
 import { getAllCourses } from './reducers/courseReducer';
 import { signin, signout } from './reducers/authReducer';
@@ -87,6 +88,7 @@ function App() {
 			{!loading &&
 			admin && (
 				<div>
+					<Header />
 					<h2>Welcome, {admin.username}</h2>
 					<button onClick={() => dispatch(signout())}>
 						Sign Out
