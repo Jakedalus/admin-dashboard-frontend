@@ -5,6 +5,13 @@ import { deleteCourse } from '../../reducers/courseReducer';
 const Course = ({ course, admin }) => {
 	const dispatch = useDispatch();
 
+	console.log(`admin`, admin);
+	console.log(`course.user`, course.user);
+	console.log(
+		`admin.id === course.user.id `,
+		admin.id === course.user.id
+	);
+
 	const handleDeleteCourse = id => {
 		const headers = {
 			headers : { Authorization: `bearer ${admin.token}` }

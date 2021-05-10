@@ -46,7 +46,7 @@ function App() {
 					process.env.REACT_APP_SECRET
 				);
 
-				dispatch(signin({ ...user, id: decodedToken }));
+				dispatch(signin({ ...user, id: decodedToken.id }));
 			}
 			setLoading(false);
 		},

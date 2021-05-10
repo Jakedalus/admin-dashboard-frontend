@@ -6,6 +6,9 @@ const NewCourseForm = ({ admin }) => {
 	const [ title, setTitle ] = useState('');
 	const [ teacher, setTeacher ] = useState('');
 	const [ subject, setSubject ] = useState('');
+	const [ question, setQuestion ] = useState('');
+	const [ answer, setAnswer ] = useState('');
+	const [ questions, setQuestions ] = useState([]);
 
 	const dispatch = useDispatch();
 
@@ -17,8 +20,16 @@ const NewCourseForm = ({ admin }) => {
 		};
 
 		dispatch(
-			createNewCourse({ title, teacher, subject }, headers)
+			createNewCourse(
+				{ title, teacher, subject, questions },
+				headers
+			)
 		);
+
+		setTitle('');
+		setTeacher('');
+		setSubject('');
+		setQuestions([]);
 	};
 
 	return (
@@ -52,6 +63,50 @@ const NewCourseForm = ({ admin }) => {
 						onChange={e => setSubject(e.target.value)}
 					/>
 				</label>
+
+				<label>
+					Questions
+					<ul>
+						{questions.map(q => (
+							<li>
+								<p>Q: {q.question}</p>
+								<p>A: {q.answer}</p>
+							</li>
+						))}
+					</ul>
+					<label>
+						Question:
+						<input
+							name='question'
+							type='text'
+							value={question}
+							onChange={e => setQuestion(e.target.value)}
+						/>
+					</label>
+					<label>
+						Answer:
+						<input
+							name='answer'
+							type='text'
+							value={answer}
+							onChange={e => setAnswer(e.target.value)}
+						/>
+					</label>
+					<button
+						type='button'
+						onClick={() => {
+							setQuestions([
+								...questions,
+								{ question, answer }
+							]);
+							setQuestion('');
+							setAnswer('');
+						}}
+					>
+						Add Questions
+					</button>
+				</label>
+
 				<button onClick={handleSaveCourse}>
 					Save Course
 				</button>
