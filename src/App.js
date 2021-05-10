@@ -15,6 +15,8 @@ import SignInPage from './components/SignInPage';
 function App() {
 	const dispatch = useDispatch();
 
+	const [ loading, setLoading ] = useState(true);
+
 	useEffect(
 		() => {
 			console.log('dispatching getAllUsers...');
@@ -24,25 +26,32 @@ function App() {
 		[ dispatch ]
 	);
 
-	useEffect(() => {
-		const signedInUserJSON = window.localStorage.getItem(
-			'signedInUser'
-		);
-
-		console.log(`window.localStorage`, window.localStorage);
-		console.log(`signedInUserJSON`, signedInUserJSON);
-
-		if (signedInUserJSON) {
-			const user = JSON.parse(signedInUserJSON);
-
-			const decodedToken = jwt.verify(
-				user.token,
-				process.env.REACT_APP_SECRET
+	useEffect(
+		() => {
+			const signedInUserJSON = window.localStorage.getItem(
+				'signedInUser'
 			);
 
-			dispatch(signin({ ...user, id: decodedToken }));
-		}
-	}, []);
+			console.log(
+				`window.localStorage`,
+				window.localStorage
+			);
+			console.log(`signedInUserJSON`, signedInUserJSON);
+
+			if (signedInUserJSON) {
+				const user = JSON.parse(signedInUserJSON);
+
+				const decodedToken = jwt.verify(
+					user.token,
+					process.env.REACT_APP_SECRET
+				);
+
+				dispatch(signin({ ...user, id: decodedToken }));
+			}
+			setLoading(false);
+		},
+		[ dispatch ]
+	);
 
 	const admin = useSelector(state => state.admin);
 	const users = useSelector(state => state.users);
@@ -55,8 +64,10 @@ function App() {
 	return (
 		<div className='App'>
 			<h1>Carna</h1>
-			{!admin && <SignInPage />}
-			{admin && (
+			{loading && <div>Loading...</div>}
+			{!loading && !admin && <SignInPage />}
+			{!loading &&
+			admin && (
 				<div>
 					<h2>Welcome, {admin.username}</h2>
 					<button onClick={() => dispatch(signout())}>
