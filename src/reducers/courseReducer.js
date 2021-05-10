@@ -51,6 +51,7 @@ export const updateCourse = (id, updates, config) => {
 };
 
 export const deleteCourse = (id, config) => {
+	console.log(`deleteCourse: id, config`, id, config);
 	return async dispatch => {
 		try {
 			const deletedCourse = await courseService.deleteCourse(

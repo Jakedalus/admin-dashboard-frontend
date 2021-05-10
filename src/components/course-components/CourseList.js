@@ -1,9 +1,9 @@
 import React from 'react';
 import Course from './Course';
 
-const CourseList = ({ courses }) => {
+const CourseList = ({ courses, admin }) => {
 	const Courses = courses.map(course => (
-		<Course course={course} key={course.id} />
+		<Course course={course} key={course.id} admin={admin} />
 	));
 
 	return (

@@ -30,6 +30,7 @@ const updateCourse = async (id, updates, config) => {
 };
 
 const deleteCourse = async (id, config) => {
+	console.log(`deleteCourse: id, config`, id, config);
 	const response = await axios.delete(
 		`${baseUrl}/${id}`,
 		config
