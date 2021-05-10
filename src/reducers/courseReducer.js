@@ -13,12 +13,16 @@ export const getAllCourses = () => {
 };
 
 export const createNewCourse = (data, config) => {
+	console.log(`data`, data);
+	console.log(`config`, config);
 	return async dispatch => {
 		try {
 			const newCourse = await courseService.createNewCourse(
 				data,
 				config
 			);
+
+			console.log(`newCourse`, newCourse);
 
 			dispatch({ type: 'NEW_COURSE', data: newCourse });
 		} catch (exception) {

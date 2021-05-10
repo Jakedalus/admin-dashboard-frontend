@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { createNewCourse } from '../../reducers/courseReducer';
 
-const NewCourseForm = () => {
+const NewCourseForm = ({ admin }) => {
 	const [ title, setTitle ] = useState('');
 	const [ teacher, setTeacher ] = useState('');
 	const [ subject, setSubject ] = useState('');
 
+	const dispatch = useDispatch();
+
 	const handleSaveCourse = e => {
 		e.preventDefault();
+
+		const headers = {
+			headers : { Authorization: `bearer ${admin.token}` }
+		};
+
+		dispatch(
+			createNewCourse({ title, teacher, subject }, headers)
+		);
 	};
 
 	return (

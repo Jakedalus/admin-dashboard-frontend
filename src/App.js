@@ -84,7 +84,10 @@ function App() {
 							<SingleCoursePage />
 						</Route>
 						<Route path='/courses'>
-							<CoursesPage courses={courses} />
+							<CoursesPage
+								admin={admin}
+								courses={courses}
+							/>
 						</Route>
 						<Route path='/'>
 							<AdminPanel />
