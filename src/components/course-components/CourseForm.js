@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createNewCourse } from '../../reducers/courseReducer';
+import {
+	createNewCourse,
+	updateCourse
+} from '../../reducers/courseReducer';
 
-const NewCourseForm = ({ admin }) => {
-	const [ title, setTitle ] = useState('');
-	const [ teacher, setTeacher ] = useState('');
-	const [ subject, setSubject ] = useState('');
+const CourseForm = ({ course, setEditMode, admin }) => {
+	const [ title, setTitle ] = useState(
+		course ? course.title : ''
+	);
+	const [ teacher, setTeacher ] = useState(
+		course ? course.teacher : ''
+	);
+	const [ subject, setSubject ] = useState(
+		course ? course.subject : ''
+	);
 	const [ question, setQuestion ] = useState('');
 	const [ answer, setAnswer ] = useState('');
-	const [ questions, setQuestions ] = useState([]);
+	const [ questions, setQuestions ] = useState(
+		course ? course.questions : []
+	);
 
 	const dispatch = useDispatch();
 
@@ -19,12 +30,23 @@ const NewCourseForm = ({ admin }) => {
 			headers : { Authorization: `bearer ${admin.token}` }
 		};
 
-		dispatch(
-			createNewCourse(
-				{ title, teacher, subject, questions },
-				headers
-			)
-		);
+		if (!course) {
+			dispatch(
+				createNewCourse(
+					{ title, teacher, subject, questions },
+					headers
+				)
+			);
+		} else {
+			dispatch(
+				updateCourse(
+					course.id,
+					{ title, teacher, subject, questions },
+					headers
+				)
+			);
+			setEditMode(false);
+		}
 
 		setTitle('');
 		setTeacher('');
@@ -115,4 +137,4 @@ const NewCourseForm = ({ admin }) => {
 	);
 };
 
-export default NewCourseForm;
+export default CourseForm;

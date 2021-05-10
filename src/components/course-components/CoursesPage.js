@@ -1,6 +1,6 @@
 import React from 'react';
 import CourseList from './CourseList';
-import NewCourseForm from './NewCourseForm';
+import NewCourseForm from './CourseForm';
 
 const CoursesPage = ({ courses, admin }) => {
 	console.log(`courses`, courses);
