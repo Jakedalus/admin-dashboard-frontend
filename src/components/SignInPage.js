@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
 	signinUser,
 	signupUser
 } from '../reducers/authReducer';
 
 const SignInPage = () => {
+	const history = useHistory();
+
 	const [ username, setUsername ] = useState('');
 	const [ password, setPassword ] = useState('');
 	const [ confirm, setConfirm ] = useState('');
@@ -23,6 +26,7 @@ const SignInPage = () => {
 		console.log(`password`, password);
 
 		dispatch(signinUser({ username, password }));
+		history.push('/');
 	};
 
 	const handleSignup = e => {
@@ -32,6 +36,7 @@ const SignInPage = () => {
 			dispatch(
 				signupUser({ username, password, name, email })
 			);
+			history.push('/');
 		} else {
 			console.log('passwords must match!');
 		}
