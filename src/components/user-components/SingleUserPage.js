@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 const SingleUserPage = ({ user }) => {
 	console.log(`user`, user);
 
-	const [ courseLIs, setCourseLIs ] = useState(null);
+	const [ courseLIs, setCourseLIs ] = useState([]);
 
 	const history = useHistory();
 
@@ -37,7 +37,7 @@ const SingleUserPage = ({ user }) => {
 					<p>{user.name}</p>
 					<p>{user.email}</p>
 					<p>{user.createdAt}</p>
-					<h4>Courses:</h4>
+					{courseLIs.length !== 0 && <h4>Courses:</h4>}
 					<ul>{courseLIs}</ul>
 				</div>
 			)}
