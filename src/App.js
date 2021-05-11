@@ -95,7 +95,10 @@ function App() {
 					</button>
 					<Switch>
 						<Route path='/users/:id'>
-							<SingleUserPage />
+							<SingleUserPage
+								user={userPage}
+								admin={admin}
+							/>
 						</Route>
 						<Route path='/users'>
 							<UsersPage admin={admin} users={users} />

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { deleteCourse } from '../../reducers/courseReducer';
 import CourseForm from './CourseForm';
 
 const SingleCoursePage = ({ course, admin }) => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	const [ editMode, setEditMode ] = useState(false);
 
@@ -26,9 +27,10 @@ const SingleCoursePage = ({ course, admin }) => {
 
 	return (
 		<li>
-			<Link to='/courses'>
-				<button>{'<'} Back</button>
-			</Link>
+			<button onClick={() => history.goBack()}>
+				{'<'} Back
+			</button>
+
 			{!editMode && (
 				<div>
 					<h3>{course.title}</h3>
