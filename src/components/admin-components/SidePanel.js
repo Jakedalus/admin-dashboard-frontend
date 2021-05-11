@@ -27,6 +27,8 @@ const StyledUl = styled.ul`
 const SidePanel = ({ admin }) => {
 	const dispatch = useDispatch();
 
+	console.log(`admin`, admin);
+
 	return (
 		<StyledPanel>
 			<h2>Welcome, {admin.username}</h2>

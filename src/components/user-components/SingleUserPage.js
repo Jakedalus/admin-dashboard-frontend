@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+
+const StyledDiv = styled.div`height: 100vh;`;
 
 const SingleUserPage = ({ user }) => {
 	console.log(`user`, user);
@@ -26,7 +29,7 @@ const SingleUserPage = ({ user }) => {
 	);
 
 	return (
-		<div>
+		<StyledDiv>
 			{!user && <div>Loading...</div>}
 			{user && (
 				<div>
@@ -41,7 +44,7 @@ const SingleUserPage = ({ user }) => {
 					<ul>{courseLIs}</ul>
 				</div>
 			)}
-		</div>
+		</StyledDiv>
 	);
 };
 

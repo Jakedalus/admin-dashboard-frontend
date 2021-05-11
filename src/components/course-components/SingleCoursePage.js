@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import { deleteCourse } from '../../reducers/courseReducer';
 import CourseForm from './CourseForm';
+
+const StyledDiv = styled.div`height: 100vh;`;
 
 const SingleCoursePage = ({ course, admin }) => {
 	const dispatch = useDispatch();
@@ -33,7 +36,7 @@ const SingleCoursePage = ({ course, admin }) => {
 	};
 
 	return (
-		<li>
+		<StyledDiv>
 			{!course && <div>Loading...</div>}
 			{course && (
 				<div>
@@ -89,7 +92,7 @@ const SingleCoursePage = ({ course, admin }) => {
 					</div>
 				</div>
 			)}
-		</li>
+		</StyledDiv>
 	);
 };
 
