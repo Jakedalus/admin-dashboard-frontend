@@ -6,7 +6,9 @@ import {
 	useRouteMatch
 } from 'react-router-dom';
 import jwt from 'jsonwebtoken';
-import { createGlobalStyle } from 'styled-components';
+import styled, {
+	createGlobalStyle
+} from 'styled-components';
 import SingleUserPage from './components/user-components/SingleUserPage';
 import UsersPage from './components/user-components/UsersPage';
 import CoursesPage from './components/course-components/CoursesPage';
@@ -42,6 +44,18 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+`;
+
+const ContainerDiv = styled.div`
+	display: flex;
+	align-items: stretch;
+	align-content: stretch;
+	height: 100%;
+`;
+
+const MainSectionDiv = styled.div`
+	width: 100%;
+	padding: 10px;
 `;
 
 function App() {
@@ -114,9 +128,9 @@ function App() {
 			{!loading && !admin && <SignInPage />}
 			{!loading &&
 			admin && (
-				<div>
+				<ContainerDiv>
 					<SidePanel admin={admin} />
-					<div>
+					<MainSectionDiv>
 						<Header />
 						<Switch>
 							<Route path='/users/:id'>
@@ -144,8 +158,8 @@ function App() {
 								<AdminPanel />
 							</Route>
 						</Switch>
-					</div>
-				</div>
+					</MainSectionDiv>
+				</ContainerDiv>
 			)}
 		</div>
 	);

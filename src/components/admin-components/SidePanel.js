@@ -7,10 +7,11 @@ import { signout } from '../../reducers/authReducer';
 const StyledPanel = styled.header`
 	display: flex;
 	flex-direction: column;
+
 	background: var(--darkblue);
 	color: var(--lightgray);
 	width: 20%;
-	height: 100%;
+	padding: 10px;
 `;
 
 const StyledUl = styled.ul`
