@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CourseList from './CourseList';
-import NewCourseForm from './CourseForm';
+import CourseForm from './CourseForm';
 
 const CoursesPage = ({ courses, admin }) => {
 	console.log(`courses`, courses);
@@ -16,7 +16,7 @@ const CoursesPage = ({ courses, admin }) => {
 			<button onClick={() => setCourseFormIsOpen(true)}>
 				Create a new course
 			</button>
-			<NewCourseForm
+			<CourseForm
 				admin={admin}
 				courseFormIsOpen={courseFormIsOpen}
 				setCourseFormIsOpen={setCourseFormIsOpen}

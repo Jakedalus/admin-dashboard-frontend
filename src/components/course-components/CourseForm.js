@@ -8,11 +8,13 @@ import {
 
 const CourseForm = ({
 	course,
-	setEditMode,
+	// setEditMode,
 	admin,
 	courseFormIsOpen,
 	setCourseFormIsOpen
 }) => {
+	console.log(`course`, course);
+
 	const [ title, setTitle ] = useState(
 		course ? course.title : ''
 	);
@@ -27,6 +29,9 @@ const CourseForm = ({
 	const [ questions, setQuestions ] = useState(
 		course ? course.questions : []
 	);
+
+	console.log(`title`, title);
+	console.log(`teacher`, teacher);
 
 	const dispatch = useDispatch();
 
@@ -52,13 +57,17 @@ const CourseForm = ({
 					headers
 				)
 			);
-			setEditMode(false);
+			// setEditMode(false);
 		}
 
-		setTitle('');
-		setTeacher('');
-		setSubject('');
-		setQuestions([]);
+		if (!course) {
+			setTitle('');
+			setTeacher('');
+			setSubject('');
+			setQuestions([]);
+		}
+
+		setCourseFormIsOpen(false);
 	};
 
 	const handleRemoveQuestion = (e, i) => {
