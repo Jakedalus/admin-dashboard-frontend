@@ -98,7 +98,7 @@ function App() {
 							<SingleUserPage />
 						</Route>
 						<Route path='/users'>
-							<UsersPage />
+							<UsersPage admin={admin} users={users} />
 						</Route>
 						<Route path='/courses/:id'>
 							<SingleCoursePage
