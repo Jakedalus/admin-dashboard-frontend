@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Modal from 'react-modal';
 import {
 	createNewCourse,
 	updateCourse
 } from '../../reducers/courseReducer';
 
-const CourseForm = ({ course, setEditMode, admin }) => {
+const CourseForm = ({
+	course,
+	setEditMode,
+	admin,
+	courseFormIsOpen,
+	setCourseFormIsOpen
+}) => {
 	const [ title, setTitle ] = useState(
 		course ? course.title : ''
 	);
@@ -66,9 +73,29 @@ const CourseForm = ({ course, setEditMode, admin }) => {
 		setQuestions(newQs);
 	};
 
+	const customStyles = {
+		content : {
+			top         : '50%',
+			left        : '50%',
+			right       : 'auto',
+			bottom      : 'auto',
+			marginRight : '-50%',
+			transform   : 'translate(-50%, -50%)'
+		}
+	};
+
 	return (
-		<div>
+		<Modal
+			isOpen={courseFormIsOpen}
+			onRequestClose={() => setCourseFormIsOpen(false)}
+			style={customStyles}
+			shouldCloseOnOverlayClick={false}
+			contentLabel='Example Modal'
+		>
 			<h2>NewCourseForm</h2>
+			<button onClick={() => setCourseFormIsOpen(false)}>
+				Cancel
+			</button>
 			<form>
 				<label>
 					Course Title
@@ -150,7 +177,7 @@ const CourseForm = ({ course, setEditMode, admin }) => {
 					Save Course
 				</button>
 			</form>
-		</div>
+		</Modal>
 	);
 };
 
