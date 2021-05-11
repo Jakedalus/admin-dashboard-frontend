@@ -54,6 +54,18 @@ const CourseForm = ({ course, setEditMode, admin }) => {
 		setQuestions([]);
 	};
 
+	const handleRemoveQuestion = (e, i) => {
+		console.log(`i`, i);
+		const newQs = questions.filter((question, index) => {
+			console.log(`index`, index);
+			return index !== i;
+		});
+
+		console.log(`newQs`, newQs);
+
+		setQuestions(newQs);
+	};
+
 	return (
 		<div>
 			<h2>NewCourseForm</h2>
@@ -89,8 +101,13 @@ const CourseForm = ({ course, setEditMode, admin }) => {
 				<label>
 					Questions
 					<ul>
-						{questions.map(q => (
+						{questions.map((q, i) => (
 							<li>
+								<span
+									onClick={e => handleRemoveQuestion(e, i)}
+								>
+									x
+								</span>
 								<p>Q: {q.question}</p>
 								<p>A: {q.answer}</p>
 							</li>
