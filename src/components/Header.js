@@ -20,14 +20,15 @@ const StyledUl = styled.ul`
 	}
 `;
 
-const Header = () => {
+const Header = ({ admin }) => {
+	console.log(`admin`, admin);
+
 	return (
 		<StyledHeader>
 			<div>Hamburger</div>
 			<nav>
 				<StyledUl>
-					<li>Mail</li>
-					<li>Profile</li>
+					<li>{admin.name}</li>
 				</StyledUl>
 			</nav>
 		</StyledHeader>

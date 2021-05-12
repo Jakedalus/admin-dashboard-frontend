@@ -126,6 +126,8 @@ function App() {
 					process.env.REACT_APP_SECRET
 				);
 
+				console.log(`decodedToken`, decodedToken);
+
 				dispatch(signin({ ...user, id: decodedToken.id }));
 			}
 			setLoading(false);
@@ -165,7 +167,7 @@ function App() {
 				<ContainerDiv>
 					<SidePanel admin={admin} />
 					<MainSectionDiv>
-						<Header />
+						<Header admin={admin} />
 						<Switch>
 							<Route path='/users/:id'>
 								<SingleUserPage
