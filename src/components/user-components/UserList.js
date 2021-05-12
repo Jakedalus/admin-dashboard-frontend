@@ -1,5 +1,19 @@
 import React from 'react';
 import User from './User';
+import styled from 'styled-components';
+
+const StyledDiv = styled.div`
+	display: flex;
+	flex-direction: column;
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		// align-items: center;
+		padding: 0;
+		width: 100%;
+	}
+`;
 
 const UserList = ({ users, admin }) => {
 	const Users = users.map(user => (
@@ -7,10 +21,9 @@ const UserList = ({ users, admin }) => {
 	));
 
 	return (
-		<div>
-			<h2>UserList</h2>
+		<StyledDiv>
 			<ul>{Users}</ul>
-		</div>
+		</StyledDiv>
 	);
 };
 

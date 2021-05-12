@@ -6,7 +6,7 @@ const UsersPage = ({ users, admin }) => {
 
 	return (
 		<div>
-			<h2>UsersPage</h2>
+			<h2>Users</h2>
 			<UserList users={users} admin={admin} />
 		</div>
 	);
