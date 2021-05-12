@@ -15,7 +15,7 @@ const StyledLi = styled.li`
 		margin-bottom: 40px;
 	}
 
-	h3 {
+	h4 {
 		margin: 0;
 	}
 
@@ -47,6 +47,7 @@ const Course = ({ course }) => {
 					<h4>{course.title}</h4>
 					<p>{course.teacher}</p>
 					<p>{course.subject}</p>
+					<p>{course.questions.length} Questions</p>
 				</div>
 				<Link to={`/courses/${course.id}`}>
 					View Detail <span>{'->'}</span>

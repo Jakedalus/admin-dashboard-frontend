@@ -37,6 +37,8 @@ const GlobalStyle = createGlobalStyle`
     --gray: #c6d1e3;
     --lightgray: #ededed;
     --offwhite: #f7f7f7;
+
+    --red: #e74c3c;
   }
 
   body {
@@ -65,6 +67,10 @@ const GlobalStyle = createGlobalStyle`
 
     button.primary {
       background-color: var(--blue);
+    }
+
+    button.delete {
+      background-color: var(--red);
     }
 
     .ReactModal__Body--open {
