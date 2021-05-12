@@ -12,7 +12,7 @@ const CoursesPage = ({ courses, admin }) => {
 
 	return (
 		<div>
-			<h2>CoursesPage</h2>
+			<h2>Courses</h2>
 			<button onClick={() => setCourseFormIsOpen(true)}>
 				Create a new course
 			</button>

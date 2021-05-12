@@ -33,6 +33,7 @@ const SingleCoursePage = ({ course, admin }) => {
 
 	const handleDeleteCourse = id => {
 		dispatch(deleteCourse(id, headers));
+		history.goBack();
 	};
 
 	return (

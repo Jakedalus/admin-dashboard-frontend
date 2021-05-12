@@ -1,5 +1,19 @@
 import React from 'react';
 import Course from './Course';
+import styled from 'styled-components';
+
+const StyledDiv = styled.div`
+	display: flex;
+	flex-direction: column;
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		// align-items: center;
+		padding: 0;
+		width: 100%;
+	}
+`;
 
 const CourseList = ({ courses, admin }) => {
 	const Courses = courses.map(course => (
@@ -7,10 +21,10 @@ const CourseList = ({ courses, admin }) => {
 	));
 
 	return (
-		<div>
-			<h2>CourseList</h2>
+		<StyledDiv>
+			<h3>Upcoming Courses</h3>
 			<ul>{Courses}</ul>
-		</div>
+		</StyledDiv>
 	);
 };
 
