@@ -4,10 +4,14 @@ import TotalsPanel from './TotalsPanel';
 
 const StyledAdmin = styled.main`height: 100vh;`;
 
-const AdminPanel = () => {
+const AdminPanel = ({ admin, users, courses }) => {
 	return (
 		<StyledAdmin>
-			<TotalsPanel />
+			<TotalsPanel
+				admin={admin}
+				users={users}
+				courses={courses}
+			/>
 		</StyledAdmin>
 	);
 };

@@ -189,7 +189,11 @@ function App() {
 								/>
 							</Route>
 							<Route path='/'>
-								<AdminPanel />
+								<AdminPanel
+									admin={admin}
+									users={users}
+									courses={courses}
+								/>
 							</Route>
 						</Switch>
 					</MainSectionDiv>
