@@ -16,9 +16,10 @@ import SingleCoursePage from './components/course-components/SingleCoursePage';
 import AdminPanel from './components/admin-components/AdminPanel';
 import Header from './components/Header';
 import SidePanel from './components/admin-components/SidePanel';
+import Profile from './components/Profile';
 import { getAllUsers } from './reducers/userReducer';
 import { getAllCourses } from './reducers/courseReducer';
-import { signin, signout } from './reducers/authReducer';
+import { signin } from './reducers/authReducer';
 import SignInPage from './components/SignInPage';
 
 const GlobalStyle = createGlobalStyle`
@@ -87,10 +88,9 @@ const ContainerDiv = styled.div`
 	height: 100%;
 `;
 
-const MainSectionDiv = styled.div`
-	width: 100%;
-	padding: 10px;
-`;
+const MainSectionDiv = styled.div`width: 100%;`;
+
+const MainContentDiv = styled.div`padding: 20px;`;
 
 function App() {
 	const dispatch = useDispatch();
@@ -168,36 +168,41 @@ function App() {
 					<SidePanel admin={admin} />
 					<MainSectionDiv>
 						<Header admin={admin} />
-						<Switch>
-							<Route path='/users/:id'>
-								<SingleUserPage
-									user={userPage}
-									admin={admin}
-								/>
-							</Route>
-							<Route path='/users'>
-								<UsersPage admin={admin} users={users} />
-							</Route>
-							<Route path='/courses/:id'>
-								<SingleCoursePage
-									course={coursePage}
-									admin={admin}
-								/>
-							</Route>
-							<Route path='/courses'>
-								<CoursesPage
-									admin={admin}
-									courses={courses}
-								/>
-							</Route>
-							<Route path='/'>
-								<AdminPanel
-									admin={admin}
-									users={users}
-									courses={courses}
-								/>
-							</Route>
-						</Switch>
+						<MainContentDiv>
+							<Switch>
+								<Route path='/users/:id'>
+									<SingleUserPage
+										user={userPage}
+										admin={admin}
+									/>
+								</Route>
+								<Route path='/users'>
+									<UsersPage admin={admin} users={users} />
+								</Route>
+								<Route path='/courses/:id'>
+									<SingleCoursePage
+										course={coursePage}
+										admin={admin}
+									/>
+								</Route>
+								<Route path='/courses'>
+									<CoursesPage
+										admin={admin}
+										courses={courses}
+									/>
+								</Route>
+								<Route path='/profile'>
+									<Profile admin={admin} />
+								</Route>
+								<Route path='/'>
+									<AdminPanel
+										admin={admin}
+										users={users}
+										courses={courses}
+									/>
+								</Route>
+							</Switch>
+						</MainContentDiv>
 					</MainSectionDiv>
 				</ContainerDiv>
 			)}
