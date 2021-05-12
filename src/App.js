@@ -28,7 +28,8 @@ const GlobalStyle = createGlobalStyle`
     --blue: #1164fb;
     --darkblue: #2a3f54;
 
-    --slate: #73879c;;
+    --slate: #73879c;
+    --darkslate: #596b7e;
 
     --greem: #1abc9c;
     --darkgreen: #9abcc3;
@@ -43,6 +44,33 @@ const GlobalStyle = createGlobalStyle`
 
     margin: 0;
     padding: 0;
+
+    input {
+      border: none;
+      border-radius: 5px;
+      height: 30px;
+    }
+    
+    button {
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      height: 30px;
+
+      background-color: var(--darkslate);
+      color: white;
+
+      cursor: pointer;
+    }
+
+    button.primary {
+      background-color: var(--blue);
+    }
+
+    .ReactModal__Body--open {
+      overflow-y: hidden;
+    }
+    
   }
 `;
 
