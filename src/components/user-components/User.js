@@ -47,6 +47,7 @@ const User = ({ user }) => {
 					<h4>{user.username}</h4>
 					<p>{user.name}</p>
 					<p>{user.email}</p>
+					<p>Created {user.courses.length} courses</p>
 				</div>
 				<Link to={`/users/${user.id}`}>
 					View Detail <span>{'->'}</span>

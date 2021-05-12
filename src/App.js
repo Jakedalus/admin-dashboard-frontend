@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
     --slate: #73879c;
     --darkslate: #596b7e;
 
-    --greem: #1abc9c;
+    --green: #1abc9c;
     --darkgreen: #9abcc3;
 
     --gray: #c6d1e3;
