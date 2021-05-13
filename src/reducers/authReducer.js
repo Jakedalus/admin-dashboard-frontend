@@ -70,6 +70,24 @@ export const signupUser = credentials => {
 	};
 };
 
+export const changePassword = credentials => {
+	console.log(`credentials`, credentials);
+	return async dispatch => {
+		try {
+			const responseStatus = await authService.changePassword(
+				credentials
+			);
+
+			console.log(`responseStatus`, responseStatus);
+
+			return responseStatus;
+		} catch (exception) {
+			console.log(`exception`, exception);
+			return exception;
+		}
+	};
+};
+
 const reducer = (state = null, action) => {
 	console.log('state now: ', state);
 	console.log('action', action);

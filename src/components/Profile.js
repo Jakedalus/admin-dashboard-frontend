@@ -1,8 +1,10 @@
-import React, { useState, useDispatch } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { changePassword } from '../reducers/authReducer';
 
 const StyledDiv = styled.div`
 	display: flex;
@@ -68,16 +70,42 @@ const ModalContainer = styled.div`
 const Profile = ({ admin }) => {
 	console.log(`admin`, admin);
 
+	const dispatch = useDispatch();
+
 	const [ pwModalIsOpen, setPwModalIsOpen ] = useState(
 		false
 	);
+
+	const [ error, setError ] = useState(false);
 
 	const [ oldPw, setOldPw ] = useState('');
 	const [ newPw, setNewPw ] = useState('');
 	const [ confirmPw, setConfirmPw ] = useState('');
 
-	const handleUpdatePassword = e => {
+	const handleUpdatePassword = async e => {
 		e.preventDefault();
+
+		if (newPw === confirmPw) {
+			const response = await dispatch(
+				changePassword({
+					username    : admin.username,
+					password    : oldPw,
+					newPassword : newPw
+				})
+			);
+
+			console.log(`response`, response);
+
+			if (Number(response) === 200) {
+				setPwModalIsOpen(false);
+				setOldPw('');
+				setNewPw('');
+				setConfirmPw('');
+			} else {
+				console.log(`error!`);
+				setError(true);
+			}
+		}
 	};
 
 	const customStyles = {
@@ -118,12 +146,19 @@ const Profile = ({ admin }) => {
 				contentLabel='Example Modal'
 			>
 				<ModalContainer>
-					<p onClick={() => setPwModalIsOpen(false)}>
+					<p
+						onClick={() => {
+							setOldPw('');
+							setNewPw('');
+							setConfirmPw('');
+							setPwModalIsOpen(false);
+						}}
+					>
 						<FontAwesomeIcon icon={faArrowLeft} />
 					</p>
 					<h3>Change password</h3>
 
-					<label for='old'>
+					<label htmlFor='old'>
 						Old password
 						<input
 							name='old'
@@ -134,7 +169,7 @@ const Profile = ({ admin }) => {
 						/>
 					</label>
 
-					<label for='new'>
+					<label htmlFor='new'>
 						New password
 						<input
 							name='new'
@@ -145,7 +180,7 @@ const Profile = ({ admin }) => {
 						/>
 					</label>
 
-					<label for='confirm'>
+					<label htmlFor='confirm'>
 						Confirm new password
 						<input
 							name='confirm'
@@ -161,6 +196,7 @@ const Profile = ({ admin }) => {
 					>
 						Update Password
 					</button>
+					{error && <p>Something went wrong</p>}
 				</ModalContainer>
 			</Modal>
 		</StyledDiv>

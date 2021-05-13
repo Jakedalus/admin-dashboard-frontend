@@ -29,4 +29,16 @@ const signup = async credentials => {
 	return response.data;
 };
 
-export default { signin, signup };
+const changePassword = async credentials => {
+	const response = await axios.put(
+		`${baseUrl}/changepassword`,
+		credentials
+	);
+
+	console.log(`response.status`, response.status);
+	console.log(`response.error`, response.error);
+
+	return response.status;
+};
+
+export default { signin, signup, changePassword };
