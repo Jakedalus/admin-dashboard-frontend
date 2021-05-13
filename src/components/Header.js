@@ -63,7 +63,12 @@ const Menu = styled.ul`
 	background-color: var(--lightgray);
 	border-radius: 5px;
 
-	transform: scaleY(0);
+	transform: scaleY(
+			${props => (props.showMenu ? '1' : '0')}
+		)
+		scaleX(
+			${props => (props.showSidePanel ? '100%' : '85%')}
+		);
 	transform-origin: top;
 
 	transition: transform .2s ease-in-out;
@@ -118,13 +123,8 @@ const Header = ({
 						</ProfileDiv>
 
 						<Menu
-							style={
-								showMenu ? (
-									{ transform: 'scaleY(1)' }
-								) : (
-									{ transform: 'scaleY(0)' }
-								)
-							}
+							showSidePanel={showSidePanel}
+							showMenu={showMenu}
 						>
 							<li>
 								<Link to='/profile'>Profile</Link>
