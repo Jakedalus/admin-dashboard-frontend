@@ -97,6 +97,10 @@ function App() {
 
 	const [ loading, setLoading ] = useState(true);
 
+	const [ showSidePanel, setShowSidePanel ] = useState(
+		true
+	);
+
 	useEffect(
 		() => {
 			console.log('dispatching getAllUsers...');
@@ -165,9 +169,16 @@ function App() {
 			{!loading &&
 			admin && (
 				<ContainerDiv>
-					<SidePanel admin={admin} />
+					<SidePanel
+						showSidePanel={showSidePanel}
+						admin={admin}
+					/>
 					<MainSectionDiv>
-						<Header admin={admin} />
+						<Header
+							admin={admin}
+							showSidePanel={showSidePanel}
+							setShowSidePanel={setShowSidePanel}
+						/>
 						<MainContentDiv>
 							<Switch>
 								<Route path='/users/:id'>

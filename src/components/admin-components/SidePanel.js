@@ -1,8 +1,6 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-// import { signout } from '../../reducers/authReducer';
 
 const StyledPanel = styled.header`
 	display: flex;
@@ -12,6 +10,12 @@ const StyledPanel = styled.header`
 	color: var(--lightgray);
 	width: 20%;
 	padding: 10px;
+
+	transform: translateX(
+		${props => (props.showSidePanel ? '0%' : '-90%')}
+	);
+
+	transition: transform .2s ease-in-out;
 `;
 
 const StyledUl = styled.ul`
@@ -24,17 +28,12 @@ const StyledUl = styled.ul`
 	}
 `;
 
-const SidePanel = ({ admin }) => {
-	// const dispatch = useDispatch();
-
+const SidePanel = ({ admin, showSidePanel }) => {
 	console.log(`admin`, admin);
 
 	return (
-		<StyledPanel>
+		<StyledPanel showSidePanel={showSidePanel}>
 			<h2>Welcome, {admin.username}</h2>
-			{/* <button onClick={() => dispatch(signout())}>
-				Sign Out
-			</button> */}
 			<nav>
 				<StyledUl>
 					<Link to='/'>
