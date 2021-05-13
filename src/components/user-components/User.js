@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const StyledLi = styled.li`
 	position: relative;
@@ -20,6 +22,8 @@ const StyledLi = styled.li`
 	}
 
 	a {
+		display: flex;
+		align-items: center;
 		position: absolute;
 		right: 10px;
 		bottom: 20px;
@@ -27,10 +31,11 @@ const StyledLi = styled.li`
 		text-decoration: none;
 		font-size: 12px;
 
-		span {
+		.svg-inline--fa.fa-arrow-right {
 			color: white;
 			background-color: var(--blue);
 			padding: 10px;
+			line-height: 50px;
 			border-radius: 50%;
 			margin-left: 10px;
 		}
@@ -50,7 +55,8 @@ const User = ({ user }) => {
 					<p>Created {user.courses.length} courses</p>
 				</div>
 				<Link to={`/users/${user.id}`}>
-					View Detail <span>{'->'}</span>
+					View Detail{' '}
+					<FontAwesomeIcon icon={faArrowRight} />
 				</Link>
 			</div>
 		</StyledLi>
