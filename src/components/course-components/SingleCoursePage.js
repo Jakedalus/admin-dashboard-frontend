@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { deleteCourse } from '../../reducers/courseReducer';
 import CourseForm from './CourseForm';
+import Loading from '../Loading';
 
 const StyledDiv = styled.div`height: 100vh;`;
 
@@ -105,7 +106,7 @@ const SingleCoursePage = ({ course, admin }) => {
 
 	return (
 		<StyledDiv>
-			{!course && <div>Loading...</div>}
+			{!course && <Loading />}
 			{course && (
 				<div>
 					<button onClick={() => history.goBack()}>

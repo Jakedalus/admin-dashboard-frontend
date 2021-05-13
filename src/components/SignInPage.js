@@ -1,10 +1,45 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import {
 	signinUser,
 	signupUser
 } from '../reducers/authReducer';
+
+const StyledDiv = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 300px;
+	margin: 0 auto;
+
+	span {
+		color: var(--purple);
+		cursor: pointer;
+	}
+`;
+
+const StyledForm = styled.form`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+
+	label {
+		width: 100%;
+	}
+
+	input {
+		width: 100%;
+		margin-bottom: 30px;
+	}
+
+	button {
+		background-color: var(--purple);
+		width: 100%;
+	}
+`;
 
 const SignInPage = () => {
 	const history = useHistory();
@@ -45,9 +80,9 @@ const SignInPage = () => {
 	return (
 		<div>
 			{!signUp && (
-				<div>
-					<h2>Sign In!</h2>
-					<form>
+				<StyledDiv>
+					<h2>Welcome Back :)</h2>
+					<StyledForm>
 						<label>
 							Username
 							<input
@@ -67,16 +102,19 @@ const SignInPage = () => {
 							/>
 						</label>
 						<button onClick={handleSignin}>Sign In</button>
-					</form>
-					<p onClick={() => setSignUp(true)}>
-						Create a new account
+					</StyledForm>
+					<p>
+						Don't have an account?{' '}
+						<span onClick={() => setSignUp(true)}>
+							Create a new one
+						</span>
 					</p>
-				</div>
+				</StyledDiv>
 			)}
 			{signUp && (
-				<div>
-					<h2>Sign Up!</h2>
-					<form>
+				<StyledDiv>
+					<h2>Create an Account</h2>
+					<StyledForm>
 						<label>
 							Username
 							<input
@@ -84,6 +122,25 @@ const SignInPage = () => {
 								name='username'
 								value={username}
 								onChange={e => setUsername(e.target.value)}
+							/>
+						</label>
+
+						<label>
+							Name
+							<input
+								type='text'
+								name='name'
+								value={name}
+								onChange={e => setName(e.target.value)}
+							/>
+						</label>
+						<label>
+							Email
+							<input
+								type='email'
+								name='email'
+								value={email}
+								onChange={e => setEmail(e.target.value)}
 							/>
 						</label>
 						<label>
@@ -104,30 +161,15 @@ const SignInPage = () => {
 								onChange={e => setConfirm(e.target.value)}
 							/>
 						</label>
-						<label>
-							Name
-							<input
-								type='text'
-								name='name'
-								value={name}
-								onChange={e => setName(e.target.value)}
-							/>
-						</label>
-						<label>
-							Email
-							<input
-								type='email'
-								name='email'
-								value={email}
-								onChange={e => setEmail(e.target.value)}
-							/>
-						</label>
 						<button onClick={handleSignup}>Sign Up</button>
-					</form>
-					<p onClick={() => setSignUp(false)}>
-						Sign in to your account
+					</StyledForm>
+					<p>
+						Already have an account?{' '}
+						<span onClick={() => setSignUp(false)}>
+							Login
+						</span>
 					</p>
-				</div>
+				</StyledDiv>
 			)}
 		</div>
 	);

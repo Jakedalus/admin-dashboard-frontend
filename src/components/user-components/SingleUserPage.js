@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import Loading from '../Loading';
 
 const StyledDiv = styled.div`height: 100vh;`;
 
@@ -73,7 +74,7 @@ const SingleUserPage = ({ user }) => {
 
 	return (
 		<StyledDiv>
-			{!user && <div>Loading...</div>}
+			{!user && <Loading />}
 			{user && (
 				<div>
 					<button onClick={() => history.goBack()}>

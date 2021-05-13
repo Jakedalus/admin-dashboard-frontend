@@ -21,6 +21,7 @@ import { getAllUsers } from './reducers/userReducer';
 import { getAllCourses } from './reducers/courseReducer';
 import { signin } from './reducers/authReducer';
 import SignInPage from './components/SignInPage';
+import Loading from './components/Loading';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -41,6 +42,8 @@ const GlobalStyle = createGlobalStyle`
     --offwhite: #f7f7f7;
 
     --red: #e74c3c;
+
+    --purple: #7e52be;
   }
 
   body {
@@ -165,7 +168,7 @@ function App() {
 	return (
 		<div className='App'>
 			<GlobalStyle />
-			{loading && <div>Loading...</div>}
+			{loading && <Loading />}
 			{!loading && !admin && <SignInPage />}
 			{!loading &&
 			admin && (
