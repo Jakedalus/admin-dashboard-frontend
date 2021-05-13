@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { signout } from '../reducers/authReducer';
 
 const StyledHeader = styled.header`
 	display: flex;
@@ -25,8 +27,11 @@ const StyledUl = styled.ul`
 	}
 	.svg-inline--fa.fa-angle-down {
 		font-size: 12px;
+		margin-left: 5px;
 	}
 `;
+
+const ProfileDiv = styled.div`cursor: pointer;`;
 
 const Menu = styled.ul`
 	position: absolute;
@@ -35,9 +40,25 @@ const Menu = styled.ul`
 	background-color: var(--gray);
 	border-radius: 5px;
 
+	transform: scaleY(0);
+	transform-origin: top;
+
+	transition: transform .2s ease-in-out;
+
 	li {
 		list-style: none;
 		padding: 5px;
+		cursor: pointer;
+	}
+
+	li:hover {
+		background-color: var(--darkslate);
+		color: white;
+		border-radius: 5px;
+	}
+
+	li:hover a {
+		color: white;
 	}
 `;
 
@@ -46,24 +67,37 @@ const Header = ({ admin }) => {
 
 	const [ showMenu, setShowMenu ] = useState(false);
 
+	const dispatch = useDispatch();
+
 	return (
 		<StyledHeader>
 			<div>Hamburger</div>
 			<nav>
 				<StyledUl>
 					<li>
-						<div onClick={() => setShowMenu(!showMenu)}>
+						<ProfileDiv
+							onClick={() => setShowMenu(!showMenu)}
+						>
 							<span>{admin.name}</span>
 							<FontAwesomeIcon icon={faAngleDown} />
-						</div>
-						{showMenu && (
-							<Menu>
-								<li>
-									<Link to='/profile'>Profile</Link>
-								</li>
-								<li>Sign Out</li>
-							</Menu>
-						)}
+						</ProfileDiv>
+
+						<Menu
+							style={
+								showMenu ? (
+									{ transform: 'scaleY(1)' }
+								) : (
+									{ transform: 'scaleY(0)' }
+								)
+							}
+						>
+							<li>
+								<Link to='/profile'>Profile</Link>
+							</li>
+							<li onClick={() => dispatch(signout())}>
+								Sign Out
+							</li>
+						</Menu>
 					</li>
 				</StyledUl>
 			</nav>

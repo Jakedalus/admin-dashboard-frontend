@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { signout } from '../../reducers/authReducer';
+// import { signout } from '../../reducers/authReducer';
 
 const StyledPanel = styled.header`
 	display: flex;
@@ -25,16 +25,16 @@ const StyledUl = styled.ul`
 `;
 
 const SidePanel = ({ admin }) => {
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 
 	console.log(`admin`, admin);
 
 	return (
 		<StyledPanel>
 			<h2>Welcome, {admin.username}</h2>
-			<button onClick={() => dispatch(signout())}>
+			{/* <button onClick={() => dispatch(signout())}>
 				Sign Out
-			</button>
+			</button> */}
 			<nav>
 				<StyledUl>
 					<Link to='/'>
