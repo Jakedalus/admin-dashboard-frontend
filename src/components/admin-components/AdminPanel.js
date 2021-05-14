@@ -9,16 +9,33 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const StyledAdmin = styled.main`height: 100%;`;
 
+const ListContainer = styled.div`
+	position: relative;
+	width: 90%;
+`;
+
 const StyledUl = styled.ul`
 	display: flex;
-	justify-content: space-around;
+	// justify-content: start;
+	position: relative;
 	padding: 0;
-	width: 90%;
 
 	li {
 		width: 180px;
 		overflow: hidden;
+		margin-right: 10px;
 	}
+`;
+
+const StyledLink = styled(Link)`
+
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 16px;
+
 `;
 
 const AdminPanel = ({ admin, users, courses }) => {
@@ -46,20 +63,26 @@ const AdminPanel = ({ admin, users, courses }) => {
 				courses={courses}
 			/>
 			<div>
-				<div>
+				<ListContainer>
 					<h3>Users</h3>
 					<StyledUl>{Users}</StyledUl>
-					<Link to={`/users/`}>
-						See all <FontAwesomeIcon icon={faArrowRight} />
-					</Link>
-				</div>
-				<div>
+					{users.length > 3 && (
+						<StyledLink to={`/users/`}>
+							See all{' '}
+							<FontAwesomeIcon icon={faArrowRight} />
+						</StyledLink>
+					)}
+				</ListContainer>
+				<ListContainer>
 					<h3>Courses</h3>
 					<StyledUl>{Courses}</StyledUl>
-					<Link to={`/users/`}>
-						See all <FontAwesomeIcon icon={faArrowRight} />
-					</Link>
-				</div>
+					{courses.length > 3 && (
+						<StyledLink to={`/users/`}>
+							See all{' '}
+							<FontAwesomeIcon icon={faArrowRight} />
+						</StyledLink>
+					)}
+				</ListContainer>
 			</div>
 		</StyledAdmin>
 	);
