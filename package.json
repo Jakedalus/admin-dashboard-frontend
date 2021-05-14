@@ -25,7 +25,8 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"cypress:open": "cypress open"
 	},
 	"proxy": "http://localhost:3001",
 	"eslintConfig": {
@@ -47,6 +48,7 @@
 		]
 	},
 	"devDependencies": {
-		"cypress": "^7.2.0"
+		"cypress": "^7.3.0",
+		"eslint-plugin-cypress": "^2.11.3"
 	}
 }
