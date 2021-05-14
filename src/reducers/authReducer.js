@@ -72,7 +72,7 @@ export const signupUser = credentials => {
 
 export const changePassword = credentials => {
 	console.log(`credentials`, credentials);
-	return async dispatch => {
+	return async () => {
 		try {
 			const responseStatus = await authService.changePassword(
 				credentials
