@@ -242,7 +242,7 @@ const CourseForm = ({
 						<b>Add Questions</b>
 						<ul>
 							{questions.map((q, i) => (
-								<li>
+								<li key={q.id}>
 									<span
 										onClick={e =>
 											handleRemoveQuestion(e, i)}

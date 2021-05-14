@@ -20,7 +20,7 @@ const StyledTotalDiv = styled.div`
 	}
 `;
 
-const TotalsPanel = ({ admin, users, courses }) => {
+const TotalsPanel = ({ users, courses }) => {
 	console.log(`users`, users);
 	console.log(`courses`, courses);
 

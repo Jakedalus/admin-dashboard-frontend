@@ -104,7 +104,7 @@ const SignInPage = () => {
 						<button onClick={handleSignin}>Sign In</button>
 					</StyledForm>
 					<p>
-						Don't have an account?{' '}
+						{"Don't have an account? "}
 						<span onClick={() => setSignUp(true)}>
 							Create a new one
 						</span>
