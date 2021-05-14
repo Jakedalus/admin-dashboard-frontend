@@ -44,6 +44,8 @@ const StyledLi = styled.li`
 
 const Course = ({ course }) => {
 	console.log(`course.user`, course.user);
+	console.log(`course.id`, course.id);
+	console.log(`course.title`, course.title);
 
 	return (
 		<StyledLi>
