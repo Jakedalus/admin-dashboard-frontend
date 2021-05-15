@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import authService from '../services/auth';
+import { setNotification } from './notificationReducer';
 
 export const signin = user => {
 	return dispatch => {
@@ -42,6 +43,15 @@ export const signinUser = credentials => {
 			dispatch(signin({ ...user, id: decodedToken.id }));
 		} catch (exception) {
 			console.log(`exception`, exception);
+			dispatch(
+				setNotification(
+					{
+						message : 'Wrong credentials',
+						type    : 'error'
+					},
+					5000
+				)
+			);
 		}
 	};
 };
@@ -66,13 +76,22 @@ export const signupUser = credentials => {
 			dispatch(signin({ ...user, id: decodedToken.id }));
 		} catch (exception) {
 			console.log(`exception`, exception);
+			dispatch(
+				setNotification(
+					{
+						message : 'Wrong credentials',
+						type    : 'error'
+					},
+					5000
+				)
+			);
 		}
 	};
 };
 
 export const changePassword = credentials => {
 	console.log(`credentials`, credentials);
-	return async () => {
+	return async dispatch => {
 		try {
 			const responseStatus = await authService.changePassword(
 				credentials
@@ -83,6 +102,16 @@ export const changePassword = credentials => {
 			return responseStatus;
 		} catch (exception) {
 			console.log(`exception`, exception);
+			dispatch(
+				setNotification(
+					{
+						message : 'Wrong credentials',
+						type    : 'error'
+					},
+					5000
+				)
+			);
+
 			return exception;
 		}
 	};

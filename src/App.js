@@ -21,6 +21,7 @@ import { getAllUsers } from './reducers/userReducer';
 import { getAllCourses } from './reducers/courseReducer';
 import { signin } from './reducers/authReducer';
 import SignInPage from './components/SignInPage';
+import Notification from './components/Notification';
 import Loading from './components/Loading';
 
 const GlobalStyle = createGlobalStyle`
@@ -146,10 +147,14 @@ function App() {
 	const admin = useSelector(state => state.admin);
 	const users = useSelector(state => state.users);
 	const courses = useSelector(state => state.courses);
+	const notification = useSelector(
+		state => state.notification
+	);
 
 	console.log(`admin`, admin);
 	console.log(`users`, users);
 	console.log(`courses`, courses);
+	console.log(`notification`, notification);
 
 	const userMatch = useRouteMatch('/users/:id');
 	const userPage = userMatch
@@ -169,10 +174,21 @@ function App() {
 		<div className='App'>
 			<GlobalStyle />
 			{loading && <Loading />}
-			{!loading && !admin && <SignInPage />}
+			{!loading &&
+			!admin && (
+				<div>
+					<SignInPage />
+					{notification && (
+						<Notification notification={notification} />
+					)}
+				</div>
+			)}
 			{!loading &&
 			admin && (
 				<ContainerDiv>
+					{notification && (
+						<Notification notification={notification} />
+					)}
 					<SidePanel
 						showSidePanel={showSidePanel}
 						admin={admin}

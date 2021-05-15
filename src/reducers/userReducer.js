@@ -1,4 +1,5 @@
 import userService from '../services/users';
+import { setNotification } from './notificationReducer';
 
 export const getAllUsers = () => {
 	return async dispatch => {
@@ -8,6 +9,15 @@ export const getAllUsers = () => {
 			dispatch({ type: 'GET_ALL_USERS', data: users });
 		} catch (exception) {
 			console.log(`exception`, exception);
+			dispatch(
+				setNotification(
+					{
+						message : 'Wrong credentials',
+						type    : 'error'
+					},
+					5000
+				)
+			);
 		}
 	};
 };

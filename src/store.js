@@ -8,11 +8,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import userReducer from './reducers/userReducer';
 import courseReducer from './reducers/courseReducer';
 import authReducer from './reducers/authReducer';
+import notificationReducer from './reducers/notificationReducer';
 
 const reducer = combineReducers({
-	users   : userReducer,
-	courses : courseReducer,
-	admin   : authReducer
+	users        : userReducer,
+	courses      : courseReducer,
+	admin        : authReducer,
+	notification : notificationReducer
 });
 
 const store = createStore(

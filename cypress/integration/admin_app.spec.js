@@ -70,5 +70,28 @@ describe('Admin app', function() {
 
 			cy.contains(`Welcome, ${user1.username}`);
 		});
+
+		it('fails with incorrect credentials', function() {
+			cy.get('#username').type('test_user');
+			cy.get('#password').type('wrong_password');
+			cy.get('#signin-button').click();
+
+			cy.contains('Welcome Back :)');
+			cy.contains(
+				"Don't have an account? Create a new one"
+			);
+
+			// cy.get('.error').contains('Wrong credentials');
+			// cy
+			// 	.get('.error')
+			// 	.should('have.css', 'color', 'rgb(255, 0, 0)');
+			// cy
+			// 	.get('.error')
+			// 	.should(
+			// 		'have.css',
+			// 		'border',
+			// 		'4px solid rgb(255, 0, 0)'
+			// 	);
+		});
 	});
 });
