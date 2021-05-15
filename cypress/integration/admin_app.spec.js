@@ -81,17 +81,14 @@ describe('Admin app', function() {
 				"Don't have an account? Create a new one"
 			);
 
-			// cy.get('.error').contains('Wrong credentials');
-			// cy
-			// 	.get('.error')
-			// 	.should('have.css', 'color', 'rgb(255, 0, 0)');
-			// cy
-			// 	.get('.error')
-			// 	.should(
-			// 		'have.css',
-			// 		'border',
-			// 		'4px solid rgb(255, 0, 0)'
-			// 	);
+			cy.get('.error').contains('Wrong credentials');
+			cy
+				.get('.error')
+				.should(
+					'have.css',
+					'background-color',
+					'rgb(231, 76, 60)'
+				);
 		});
 	});
 });
