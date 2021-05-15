@@ -1,4 +1,5 @@
 import courseService from '../services/courses';
+import { setNotification } from './notificationReducer';
 
 // action creators for courses
 export const getAllCourses = () => {
@@ -8,6 +9,15 @@ export const getAllCourses = () => {
 			dispatch({ type: 'GET_ALL_COURSES', data: courses });
 		} catch (exception) {
 			console.log(`exception`, exception);
+			dispatch(
+				setNotification(
+					{
+						message : 'Wrong credentials',
+						type    : 'error'
+					},
+					5000
+				)
+			);
 		}
 	};
 };
@@ -25,8 +35,26 @@ export const createNewCourse = (data, config) => {
 			console.log(`newCourse`, newCourse);
 
 			dispatch({ type: 'NEW_COURSE', data: newCourse });
+			dispatch(
+				setNotification(
+					{
+						message : `Created new course: ${data.title}`,
+						type    : 'success'
+					},
+					5000
+				)
+			);
 		} catch (exception) {
 			console.log(`exception`, exception);
+			dispatch(
+				setNotification(
+					{
+						message : 'Wrong credentials',
+						type    : 'error'
+					},
+					5000
+				)
+			);
 		}
 	};
 };
@@ -44,8 +72,26 @@ export const updateCourse = (id, updates, config) => {
 				type : 'UPDATE_COURSE',
 				data : updatedCourse
 			});
+			dispatch(
+				setNotification(
+					{
+						message : `Updated course`,
+						type    : 'success'
+					},
+					5000
+				)
+			);
 		} catch (exception) {
 			console.log(`exception`, exception);
+			dispatch(
+				setNotification(
+					{
+						message : 'Wrong credentials',
+						type    : 'error'
+					},
+					5000
+				)
+			);
 		}
 	};
 };
@@ -63,8 +109,26 @@ export const deleteCourse = (id, config) => {
 				type : 'DELETE_COURSE',
 				data : deletedCourse
 			});
+			dispatch(
+				setNotification(
+					{
+						message : `Deleted course`,
+						type    : 'success'
+					},
+					5000
+				)
+			);
 		} catch (exception) {
 			console.log(`exception`, exception);
+			dispatch(
+				setNotification(
+					{
+						message : 'Wrong credentials',
+						type    : 'error'
+					},
+					5000
+				)
+			);
 		}
 	};
 };
