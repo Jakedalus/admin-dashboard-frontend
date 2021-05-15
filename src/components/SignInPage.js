@@ -88,6 +88,7 @@ const SignInPage = () => {
 							<input
 								type='text'
 								name='username'
+								id='username'
 								value={username}
 								onChange={e => setUsername(e.target.value)}
 							/>
@@ -97,11 +98,17 @@ const SignInPage = () => {
 							<input
 								type='password'
 								name='password'
+								id='password'
 								value={password}
 								onChange={e => setPassword(e.target.value)}
 							/>
 						</label>
-						<button onClick={handleSignin}>Sign In</button>
+						<button
+							id='singin-button'
+							onClick={handleSignin}
+						>
+							Sign In
+						</button>
 					</StyledForm>
 					<p>
 						{"Don't have an account? "}
@@ -120,6 +127,7 @@ const SignInPage = () => {
 							<input
 								type='text'
 								name='username'
+								id='username'
 								value={username}
 								onChange={e => setUsername(e.target.value)}
 							/>
@@ -130,6 +138,7 @@ const SignInPage = () => {
 							<input
 								type='text'
 								name='name'
+								id='name'
 								value={name}
 								onChange={e => setName(e.target.value)}
 							/>
@@ -139,6 +148,7 @@ const SignInPage = () => {
 							<input
 								type='email'
 								name='email'
+								id='email'
 								value={email}
 								onChange={e => setEmail(e.target.value)}
 							/>
@@ -148,6 +158,7 @@ const SignInPage = () => {
 							<input
 								type='password'
 								name='password'
+								id='password'
 								value={password}
 								onChange={e => setPassword(e.target.value)}
 							/>
@@ -157,11 +168,17 @@ const SignInPage = () => {
 							<input
 								type='password'
 								name='confirm'
+								id='confirm'
 								value={confirm}
 								onChange={e => setConfirm(e.target.value)}
 							/>
 						</label>
-						<button onClick={handleSignup}>Sign Up</button>
+						<button
+							id='signup-button'
+							onClick={handleSignup}
+						>
+							Sign Up
+						</button>
 					</StyledForm>
 					<p>
 						Already have an account?{' '}
