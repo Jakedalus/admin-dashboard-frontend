@@ -104,7 +104,7 @@ const SignInPage = () => {
 							/>
 						</label>
 						<button
-							id='singin-button'
+							id='signin-button'
 							onClick={handleSignin}
 						>
 							Sign In

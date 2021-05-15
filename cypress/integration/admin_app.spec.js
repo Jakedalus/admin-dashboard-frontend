@@ -46,11 +46,27 @@ describe('Admin app', function() {
 		cy.contains('Sign In');
 	});
 
+	describe('Signup test', function() {
+		it('succeeds with correct credentials', function() {
+			cy.contains('Create a new one').click();
+			cy.get('#username').type('test_user3');
+			cy.get('#name').type('Test User the Third');
+			cy.get('#email').type('test_user3@gmail.com');
+
+			cy.get('#password').type('abc123xyz');
+			cy.get('#confirm').type('abc123xyz');
+
+			cy.get('#signup-button').click();
+
+			cy.contains(`Welcome, test_user3`);
+		});
+	});
+
 	describe('Signin tests', function() {
 		it('succeeds with correct credentials', function() {
 			cy.get('#username').type('test_user');
 			cy.get('#password').type('abc123xyz');
-			cy.get('#singin-button').click();
+			cy.get('#signin-button').click();
 
 			cy.contains(`Welcome, ${user1.username}`);
 		});
