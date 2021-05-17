@@ -159,9 +159,6 @@ const SingleCoursePage = ({ course, admin }) => {
 							course={course}
 							admin={admin}
 						/>
-						{/* <button onClick={() => setEditMode(false)}>
-							Cancel
-						</button> */}
 					</div>
 				</div>
 			)}

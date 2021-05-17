@@ -49,6 +49,8 @@ const reducer = (state = '', action) => {
 					state.notification !== action.notification
 			);
 
+			// clear the latest notification timerId if it exists, otherwise any new notification
+			// won't display for its full time, but whatever time is left on the previous one
 			if (
 				state.notification &&
 				state.notification !== action.notification

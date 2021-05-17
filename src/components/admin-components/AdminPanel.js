@@ -28,14 +28,12 @@ const StyledUl = styled.ul`
 `;
 
 const StyledLink = styled(Link)`
-
   position: absolute;
   right: 0px;
   bottom: 0px;
   color: var(--blue);
   text-decoration: none;
   font-size: 16px;
-
 `;
 
 const AdminPanel = ({ admin, users, courses }) => {

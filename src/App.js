@@ -108,7 +108,10 @@ function App() {
 
 	useEffect(
 		() => {
-			console.log('dispatching getAllUsers...');
+			// Initializing all users and courses
+			console.log(
+				'dispatching getAllUsers and getAllCourses...'
+			);
 			dispatch(getAllUsers());
 			dispatch(getAllCourses());
 		},
@@ -117,6 +120,7 @@ function App() {
 
 	useEffect(
 		() => {
+			// if localStorage has a signedInUser, log them in
 			const signedInUserJSON = window.localStorage.getItem(
 				'signedInUser'
 			);
