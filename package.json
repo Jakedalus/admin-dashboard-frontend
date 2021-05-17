@@ -29,14 +29,8 @@
 		"cypress:open": "cypress open"
 	},
 	"proxy": "http://localhost:3001",
-	"plugins": [
-		"transform-remove-console"
-	],
 	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
+		"extends": [ "react-app", "react-app/jest" ]
 	},
 	"browserslist": {
 		"production": [
