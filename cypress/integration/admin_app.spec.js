@@ -182,35 +182,36 @@ describe('Admin app', function() {
 						);
 				});
 
+				it('user can delete their own course', function() {
+					cy.createCourse({
+						title  : 'test title 3',
+						author : 'test author 3',
+						url    : 'www.test.com 3'
+					});
+					cy
+						.get('.course')
+						.eq(2)
+						.contains('View Detail')
+						.click();
+					cy.contains('Delete').click();
+
+					cy.contains('Deleted course');
+					cy
+						.get('.course')
+						.should('not.contain', 'test title 3');
+				});
+
 				it.only(
-					'user can delete their own course',
+					"user cannot delete another user's blog",
 					function() {
-						cy.createCourse({
-							title  : 'test title 3',
-							author : 'test author 3',
-							url    : 'www.test.com 3'
-						});
 						cy
 							.get('.course')
-							.eq(2)
+							.eq(0)
 							.contains('View Detail')
 							.click();
-						cy.contains('Delete').click();
-
-						cy.contains('Deleted course');
-						cy
-							.get('.course')
-							.should('not.contain', 'test title 3');
+						cy.contains('Delete').should('not.exist');
 					}
 				);
-
-				// it("user cannot delete another user's blog", function() {
-				//   cy
-				//     .contains('test title 2')
-				//     .contains('view')
-				//     .click();
-				//   cy.get('#delete').should('not.exist');
-				// });
 			});
 		});
 	});
