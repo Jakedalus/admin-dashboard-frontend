@@ -99,6 +99,16 @@ export const changePassword = credentials => {
 
 			console.log(`responseStatus`, responseStatus);
 
+			dispatch(
+				setNotification(
+					{
+						message : 'Sucessfully changed password',
+						type    : 'success'
+					},
+					5000
+				)
+			);
+
 			return responseStatus;
 		} catch (exception) {
 			console.log(`exception`, exception);

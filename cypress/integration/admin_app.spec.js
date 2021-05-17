@@ -201,15 +201,41 @@ describe('Admin app', function() {
 						.should('not.contain', 'test title 3');
 				});
 
+				it("user cannot delete another user's blog", function() {
+					cy
+						.get('.course')
+						.eq(0)
+						.contains('View Detail')
+						.click();
+					cy.contains('Delete').should('not.exist');
+				});
+
 				it.only(
-					"user cannot delete another user's blog",
+					'user can change their password',
 					function() {
+						cy.contains('Francis Bacon').click();
+						cy.contains('Profile').click();
+
+						cy.contains('Change Password').click();
+						cy.get('#old').type('abc123xyz');
+						cy.get('#new').type('newpassword');
+						cy.get('#confirm').type('newpassword');
+						cy.contains('Update Password').click();
+
 						cy
-							.get('.course')
-							.eq(0)
-							.contains('View Detail')
-							.click();
-						cy.contains('Delete').should('not.exist');
+							.get('.success')
+							.should(
+								'contain',
+								'Sucessfully changed password'
+							);
+
+						cy
+							.get('.success')
+							.should(
+								'have.css',
+								'background-color',
+								'rgb(26, 188, 156)'
+							);
 					}
 				);
 			});
