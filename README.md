@@ -10,8 +10,15 @@ Once that is finished, you can start up the app by running
 
 `npm start`
 
+
 The app will not work, however, without the backend also installed and running.
 See the [backend repository](https://github.com/Jakedalus/admin-dashboard-backend/tree/main) for the code and instructions there.
+
+You'll need a database also, the Backend documentation has more info.
+
+You will need to setup a `.env` file also with REACT_APP_SECRET with the secret key you used in the Backend to salt the hash of the bcrypt passwords (see Backend documentation
+for more info).
+
 
 ## To run the E2E tests
 
