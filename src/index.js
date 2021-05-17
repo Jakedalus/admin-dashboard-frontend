@@ -6,6 +6,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
 
+if (process.env.NODE_ENV === 'production') {
+	console.log = function() {};
+}
+
 ReactDOM.render(
 	<Provider store={store}>
 		<Router>

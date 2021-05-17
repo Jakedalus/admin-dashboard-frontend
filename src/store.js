@@ -10,6 +10,10 @@ import courseReducer from './reducers/courseReducer';
 import authReducer from './reducers/authReducer';
 import notificationReducer from './reducers/notificationReducer';
 
+if (process.env.NODE_ENV === 'production') {
+	console.log = function() {};
+}
+
 const reducer = combineReducers({
 	users        : userReducer,
 	courses      : courseReducer,
