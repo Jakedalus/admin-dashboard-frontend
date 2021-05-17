@@ -157,33 +157,60 @@ describe('Admin app', function() {
 					});
 				});
 
+				it('should be able to update course', function() {
+					cy.contains('Courses').click();
+					cy
+						.get('.course')
+						.eq(1)
+						.contains('View Detail')
+						.click();
+
+					cy.contains('Edit').click();
+					cy.get('#title').type(' edited!');
+					cy.get('#save-course-button').click();
+
+					cy.contains('test title edited!');
+					cy
+						.get('.success')
+						.should('contain', 'Updated course');
+					cy
+						.get('.success')
+						.should(
+							'have.css',
+							'background-color',
+							'rgb(26, 188, 156)'
+						);
+				});
+
 				it.only(
-					'should be able to update course',
+					'user can delete their own course',
 					function() {
-						cy.contains('Courses').click();
+						cy.createCourse({
+							title  : 'test title 3',
+							author : 'test author 3',
+							url    : 'www.test.com 3'
+						});
 						cy
 							.get('.course')
-							.eq(1)
+							.eq(2)
 							.contains('View Detail')
 							.click();
+						cy.contains('Delete').click();
 
-						cy.contains('Edit').click();
-						cy.get('#title').type(' edited!');
-						cy.get('#save-course-button').click();
-
-						cy.contains('test title edited!');
+						cy.contains('Deleted course');
 						cy
-							.get('.success')
-							.should('contain', 'Updated course');
-						cy
-							.get('.success')
-							.should(
-								'have.css',
-								'background-color',
-								'rgb(26, 188, 156)'
-							);
+							.get('.course')
+							.should('not.contain', 'test title 3');
 					}
 				);
+
+				// it("user cannot delete another user's blog", function() {
+				//   cy
+				//     .contains('test title 2')
+				//     .contains('view')
+				//     .click();
+				//   cy.get('#delete').should('not.exist');
+				// });
 			});
 		});
 	});
