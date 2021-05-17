@@ -214,6 +214,7 @@ const CourseForm = ({
 						Course Title
 						<input
 							name='title'
+							id='title'
 							type='text'
 							value={title}
 							onChange={e => setTitle(e.target.value)}
@@ -223,6 +224,7 @@ const CourseForm = ({
 						Course Teacher
 						<input
 							name='teacher'
+							id='teacher'
 							type='text'
 							value={teacher}
 							onChange={e => setTeacher(e.target.value)}
@@ -232,6 +234,7 @@ const CourseForm = ({
 						Course Subject
 						<input
 							name='subject'
+							id='subject'
 							type='text'
 							value={subject}
 							onChange={e => setSubject(e.target.value)}
@@ -260,6 +263,7 @@ const CourseForm = ({
 							Question:
 							<input
 								name='question'
+								id='question'
 								type='text'
 								value={question}
 								onChange={e => setQuestion(e.target.value)}
@@ -269,6 +273,7 @@ const CourseForm = ({
 							Answer:
 							<input
 								name='answer'
+								id='answer'
 								type='text'
 								value={answer}
 								onChange={e => setAnswer(e.target.value)}
@@ -276,6 +281,7 @@ const CourseForm = ({
 						</label>
 						<button
 							type='button'
+							id='add-question-button'
 							onClick={() => {
 								setQuestions([
 									...questions,
@@ -291,6 +297,7 @@ const CourseForm = ({
 
 					<button
 						className='primary'
+						id='save-course-button'
 						onClick={handleSaveCourse}
 					>
 						Save Course

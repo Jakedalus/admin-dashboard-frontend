@@ -90,5 +90,56 @@ describe('Admin app', function() {
 					'rgb(231, 76, 60)'
 				);
 		});
+
+		describe("When logged in and another user's course exists", function() {
+			beforeEach(function() {
+				///// BYPASS THE UI
+				cy.login({
+					username : 'test_user_2',
+					password : 'secret!!!'
+				});
+
+				cy.createCourse({
+					title   : 'test title 2',
+					teacher : 'test teacher 2',
+					subject : 'test subject 2'
+				});
+
+				localStorage.clear();
+
+				cy.login({
+					username : 'test_user',
+					password : 'abc123xyz'
+				});
+			});
+
+			it.only('A new course can be created', function() {
+				cy.contains('Courses').click();
+				cy.contains('Create a new course').click();
+				cy.get('#title').type('test title');
+				cy.get('#teacher').type('test teacher');
+				cy.get('#subject').type('test subject');
+				cy.get('#question').type('test question');
+				cy.get('#answer').type('test answer');
+				cy.get('#add-question-button').click();
+				cy.get('#save-course-button').click();
+
+				cy.contains('test title');
+				cy.contains('test teacher');
+				cy
+					.get('.success')
+					.should(
+						'contain',
+						'Created new course: test title'
+					);
+				cy
+					.get('.success')
+					.should(
+						'have.css',
+						'background-color',
+						'rgb(26, 188, 156)'
+					);
+			});
+		});
 	});
 });
