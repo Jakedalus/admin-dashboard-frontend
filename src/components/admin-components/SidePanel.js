@@ -9,7 +9,7 @@ const StyledPanel = styled.header`
 	background: var(--darkblue);
 	color: var(--lightgray);
 	width: 20%;
-	height: 110vh;
+	min-height: 100vh;
 	padding: 10px;
 
 	transform: translateX(
