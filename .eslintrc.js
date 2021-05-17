@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
 module.exports = {
 	env           : {
-		browser           : true,
-		es6               : true,
-		'jest/globals'    : true,
-		'cypress/globals' : true,
-		node            : true
+		browser        : true,
+		es6            : true,
+		'jest/globals' : true,
+		// 'cypress/globals' : true,
+		node           : true
 	},
 	extends       : [
 		'eslint:recommended',
