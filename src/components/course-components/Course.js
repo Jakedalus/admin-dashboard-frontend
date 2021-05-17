@@ -48,7 +48,7 @@ const Course = ({ course }) => {
 	console.log(`course.title`, course.title);
 
 	return (
-		<StyledLi>
+		<StyledLi className='course'>
 			<div>
 				<div>
 					<h4>{course.title}</h4>

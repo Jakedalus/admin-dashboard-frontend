@@ -113,7 +113,7 @@ describe('Admin app', function() {
 				});
 			});
 
-			it.only('A new course can be created', function() {
+			it('A new course can be created', function() {
 				cy.contains('Courses').click();
 				cy.contains('Create a new course').click();
 				cy.get('#title').type('test title');
@@ -139,6 +139,51 @@ describe('Admin app', function() {
 						'background-color',
 						'rgb(26, 188, 156)'
 					);
+			});
+
+			describe('and a course exists', function() {
+				beforeEach(function() {
+					cy.createCourse({
+						title   : 'test title',
+						teacher : 'test teacher',
+						subject : 'test subject',
+						courses : [
+							{
+								question : 'question 1',
+								answer   : 'answer 1'
+							},
+							{ question: 'question 2', answer: 'answer 2' }
+						]
+					});
+				});
+
+				it.only(
+					'should be able to update course',
+					function() {
+						cy.contains('Courses').click();
+						cy
+							.get('.course')
+							.eq(1)
+							.contains('View Detail')
+							.click();
+
+						cy.contains('Edit').click();
+						cy.get('#title').type(' edited!');
+						cy.get('#save-course-button').click();
+
+						cy.contains('test title edited!');
+						cy
+							.get('.success')
+							.should('contain', 'Updated course');
+						cy
+							.get('.success')
+							.should(
+								'have.css',
+								'background-color',
+								'rgb(26, 188, 156)'
+							);
+					}
+				);
 			});
 		});
 	});
