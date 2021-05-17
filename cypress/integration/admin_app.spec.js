@@ -210,34 +210,54 @@ describe('Admin app', function() {
 					cy.contains('Delete').should('not.exist');
 				});
 
-				it.only(
-					'user can change their password',
-					function() {
-						cy.contains('Francis Bacon').click();
-						cy.contains('Profile').click();
+				it('user can change their password', function() {
+					cy.contains('Francis Bacon').click();
+					cy.contains('Profile').click();
 
-						cy.contains('Change Password').click();
-						cy.get('#old').type('abc123xyz');
-						cy.get('#new').type('newpassword');
-						cy.get('#confirm').type('newpassword');
-						cy.contains('Update Password').click();
+					cy.contains('Change Password').click();
+					cy.get('#old').type('abc123xyz');
+					cy.get('#new').type('newpassword');
+					cy.get('#confirm').type('newpassword');
+					cy.contains('Update Password').click();
 
-						cy
-							.get('.success')
-							.should(
-								'contain',
-								'Sucessfully changed password'
-							);
+					cy
+						.get('.success')
+						.should(
+							'contain',
+							'Sucessfully changed password'
+						);
 
-						cy
-							.get('.success')
-							.should(
-								'have.css',
-								'background-color',
-								'rgb(26, 188, 156)'
-							);
-					}
-				);
+					cy
+						.get('.success')
+						.should(
+							'have.css',
+							'background-color',
+							'rgb(26, 188, 156)'
+						);
+				});
+
+				it('user cannot change their password with wrong old password', function() {
+					cy.contains('Francis Bacon').click();
+					cy.contains('Profile').click();
+
+					cy.contains('Change Password').click();
+					cy.get('#old').type('thisiswrong');
+					cy.get('#new').type('newpassword');
+					cy.get('#confirm').type('newpassword');
+					cy.contains('Update Password').click();
+
+					cy
+						.get('.error')
+						.should('contain', 'Wrong credentials');
+
+					cy
+						.get('.error')
+						.should(
+							'have.css',
+							'background-color',
+							'rgb(231, 76, 60)'
+						);
+				});
 			});
 		});
 	});
