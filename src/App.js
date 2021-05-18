@@ -108,7 +108,7 @@ function App() {
 
 	useEffect(
 		() => {
-			// Initializing all users and courses...
+			// Initializing all users and courses
 			console.log(
 				'dispatching getAllUsers and getAllCourses...'
 			);
